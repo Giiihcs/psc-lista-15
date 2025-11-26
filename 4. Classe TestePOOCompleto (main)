@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+
+public class TestePOOCompleto {
+    public static void main(String[] args) {
+
+        // Instâncias
+        Filme f1 = new Filme("Interestelar", 2014, 169, "Christopher Nolan");
+        Musica m1 = new Musica("Blinding Lights", 2020, 4.5, "The Weeknd");
+
+        // ---------------------------------------
+        // TESTE 1 – Polimorfismo com Classe Abstrata
+        // ---------------------------------------
+        System.out.println("\n=== TESTE 1: Polimorfismo com ItemMidia ===");
+
+        ArrayList<ItemMidia> lista = new ArrayList<>();
+        lista.add(f1);
+        lista.add(m1);
+
+        for (ItemMidia item : lista) {
+            item.reproduzir(); // Método polimórfico
+        }
+
+        // ---------------------------------------
+        // TESTE 2 – Polimorfismo com Interface
+        // ---------------------------------------
+        System.out.println("\n=== TESTE 2: Polimorfismo com Interface Avaliavel ===");
+
+        Avaliavel avaliavel;
+
+        avaliavel = f1; // Referência tipo interface → Filme
+        avaliavel.receberAvaliacao(9);
+
+        avaliavel = m1; // Agora referência → Música
+        avaliavel.receberAvaliacao(5);
+
+        // ---------------------------------------
+        // TESTE 3 – Encapsulamento (validação do setter)
+        // ---------------------------------------
+        System.out.println("\n=== TESTE 3: Encapsulamento e Validação ===");
+        System.out.println("Tentando definir duração negativa...");
+
+        f1.setDuracao(-10); // Deve disparar erro
+    }
+}
